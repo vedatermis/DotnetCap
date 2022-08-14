@@ -1,4 +1,3 @@
-using DotNetCore.CAP;
 using Microsoft.AspNetCore.Mvc;
 using ProductAPI.Model;
 using ProductAPI.Service;
