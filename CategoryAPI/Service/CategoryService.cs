@@ -4,7 +4,7 @@ using DotNetCore.CAP;
 
 namespace CategoryAPI.Service;
 
-public class CategoryService: ICategoryService
+public class CategoryService: ICategoryService, ICapSubscribe
 {
     private readonly ICapPublisher _capPublisher;
     private readonly ApiContext _apiContext;
@@ -39,6 +39,12 @@ public class CategoryService: ICategoryService
             NewCategoryName = category.CategoryName
         };
         
-        await _capPublisher.PublishAsync("UpdateProductCategoryName", updateCategoryNameDto);
+        await _capPublisher.PublishAsync("UpdateProductCategoryName", updateCategoryNameDto, callbackName: "categoryUpdateDone");
+    }
+
+    [CapSubscribe("categoryUpdateDone")]
+    public Task UpdateComplete(string message)
+    {
+        return Task.FromResult(message);
     }
 }

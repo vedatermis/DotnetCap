@@ -5,5 +5,5 @@ namespace ProductAPI.Service;
 public interface IProductService
 {
     List<Product> GetProducts();
-    void UpdateCategoryName(UpdateCategoryNameDto updateCategoryNameDto);
+    string UpdateCategoryName(UpdateCategoryNameDto updateCategoryNameDto);
 }

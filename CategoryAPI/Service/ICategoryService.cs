@@ -6,4 +6,5 @@ public interface ICategoryService
 {
     List<Category> GetCategories();
     Task UpdateCategoryName(Category category);
+    Task UpdateComplete(string message);
 }
